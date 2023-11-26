@@ -1,0 +1,31 @@
+{
+  "name": "peoplepertask",
+  "version": "1.0.0",
+  "description": "Welcome to People Per Task, your go-to destination for freelance talent! Our GitHub repository is where we collaborate on building and improving our cutting-edge freelance marketplace. Join us in shaping the future of remote work by contributing to our open-source project.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm:tailwind:watch\" \"tsc --watch\"",
+    "tailwind:watch": "npx tailwindcss -i ./global.css -o ./dist/output.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BilalChbanat/PeoplePerTask.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BilalChbanat/PeoplePerTask/issues"
+  },
+  "homepage": "https://github.com/BilalChbanat/PeoplePerTask#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "apexcharts": "^3.44.0"
+  }
+}
