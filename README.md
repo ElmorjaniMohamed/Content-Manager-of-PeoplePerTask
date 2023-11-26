@@ -1,6 +1,6 @@
 # Content-Manager-of-PeoplePerTask
 
-##Contexte du projet
+## Contexte du projet
 Nous visons à développer la partie backend de PeoplePerTask en utilisant PHP procédural et MySQLi, en mettant l'accent sur la création d'un gestionnaire de contenu.
 
 Cette partie du projet facilitera la gestion des projets, des freelances, des catégories, etc.
@@ -25,11 +25,11 @@ Internationalisation : Mettre en place un système d'internationalisation pour p
 
 ​
 
-##User Stories pour le Gestionnaire de Contenu :
+## User Stories pour le Gestionnaire de Contenu :
 
 ​
 
-###En tant qu'administrateur du plateforme:
+### En tant qu'administrateur du plateforme:
 
 Je veux pouvoir ajouter, modifier et supprimer des projets.
 Je veux pouvoir gérer la liste des freelances, y compris l'ajout, la modification et la suppression.
@@ -39,7 +39,7 @@ Je veux visualiser des statistiques sur la plateforme, telles que le nombre tota
 Je veux avoir une interface avec des formulaires pour faciliter la gestion du contenu.
 ​
 
-###En tant qu'utilisateur du plateforme:
+### En tant qu'utilisateur du plateforme:
 
 Je veux pouvoir accéder à la plateforme dans ma langue préférée.
 Je veux voir du contenu dynamique sur la plateforme, y compris les projets récents et les témoignages mis à jour.
