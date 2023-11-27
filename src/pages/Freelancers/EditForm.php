@@ -1,12 +1,12 @@
 <?php
-include("../../php/conn.php");
+include("../../../php/conn.php");
 
 $id = $_GET['id'];
 
-$qeury = "select * from users where  userid=$id";
+$qeury = "SELECT * FROM Freelancers WHERE  FreelancerID = $id";
 $result = mysqli_query($conn, $qeury);
 
-$row1 = mysqli_fetch_assoc($result);
+$row2 = mysqli_fetch_assoc($result);
 
 $qeury_user = "SELECT * FROM users";
 $userS = mysqli_query($conn, $qeury_user);
@@ -17,16 +17,8 @@ $region = mysqli_query($conn, $qeury_region);
 $qeury_cities = "SELECT * FROM cities";
 $cities = mysqli_query($conn, $qeury_cities);
 
- 
-$id_region = $row1['region_id'];
-$id_city = $row1['city_id'];
-
-$name_old_city = mysqli_query($conn, "SELECT name from Cities where id=$id_city");
-$name_old_city_after_fetch = mysqli_fetch_assoc($name_old_city)["name"];
-
-$name_old_region = mysqli_query($conn, "SELECT name from regions where id=$id_region");
-$name_old_region_after_fetch = mysqli_fetch_assoc($name_old_region)["name"];
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,13 +26,13 @@ $name_old_region_after_fetch = mysqli_fetch_assoc($name_old_region)["name"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../dist/output.css">
+    <link rel="stylesheet" href="../../../dist/output.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Ruslan+Display&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="../../dist/sandbox.js"></script>
+    <script src="../../../dist/sandbox.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <title>PeoplePerTask</title>
@@ -48,12 +40,13 @@ $name_old_region_after_fetch = mysqli_fetch_assoc($name_old_region)["name"];
 
 <body class="font-poppins dark:bg-gray-900 text-mainBlue dark:text-white">
 
-    <form action="update.php" method="POST">
+    <form action="../Freelancers/updateFreelancer.php" method="POST">
         <div>
             <div>
                 <div class="flex justify-center pt-4">
                     <!--Modal-->
-                    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center">
+                    <div
+                        class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center">
                         <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50">
                         </div>
 
@@ -74,7 +67,7 @@ $name_old_region_after_fetch = mysqli_fetch_assoc($name_old_region)["name"];
                             <div class="modal-content py-4 text-left px-6">
                                 <!--Title-->
                                 <div class="flex justify-between items-center pb-3">
-                                    <p class="text-2xl text-center text-mainBlue font-bold">Edit Your
+                                    <p class="text-2xl text-center text-mainBlue font-bold">Add Your
                                         Information
                                     </p>
                                     <div class="modal-close cursor-pointer z-50">
@@ -86,52 +79,23 @@ $name_old_region_after_fetch = mysqli_fetch_assoc($name_old_region)["name"];
                                         </svg>
                                     </div>
                                 </div>
-                                <input type="hidden" name="userid" value="<?= $id ?>">
+
                                 <!--Body-->
+                                <input type="hidden" id="FreelancerID" name="FreelancerID" value="<?= $id ?>" >
                                 <label for="name" class="text-gray-800 text-sm font-bold">Name</label>
-                                <input id="name" name="username" value="<?= $row1['username'] ?>"
+                                <input id="name" name="name" value="<?= $row2["FreelancerName"] ?>"
                                     class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                     placeholder="Ex: Mohamed El Morjani" />
-                                <label for="email"
-                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Email</label>
-                                <input id="email" name="email" value="<?= $row1['email'] ?>"
+                                <label for="skills" 
+                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Skills</label>
+                                <input id="email" name="skills" value="<?= $row2["Skills"] ?>"
                                     class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                    placeholder="Ex: mohamed321@gmail.com" />
-                                <label for="password"
-                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Password</label>
-                                <input id="password" name="password" value="<?= $row1['Password'] ?>"
+                                    placeholder="Ex: Desgin..." />
+                                <label for="job"
+                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">job</label>
+                                <input id="password" name="job" value="<?= $row2["Job"] ?>"
                                     class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                    placeholder="Ex: mohammed@@@000" />
-                                <label for="region"
-                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Region</label>
-                                <select id="default" name="region"
-                                    class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
-                                    <option selected value="<?= $id_city ?>">
-                                        <?= $name_old_region_after_fetch ?>
-                                    </option>
-                                    <?php
-
-                                    while ($row = mysqli_fetch_assoc($region)) {
-                                        echo "<option value='$row[id]'> $row[name] </option>";
-                                    }
-                                    ?>
-
-                                </select>
-                                <label for="city"
-                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">City</label>
-                                <select id="default" name="city"
-                                    class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
-
-                                    <option selected value="<?= $id_city ?>">
-                                        <?= $name_old_city_after_fetch ?>
-                                    </option>
-                                    <?php
-                                    while ($row = mysqli_fetch_assoc($cities)) {
-                                        echo "<option value='$row[id]'> $row[name] </option>";
-                                    }
-                                    ?>
-
-                                </select>
+                                    placeholder="Ex: Developper, Desginer..." />
 
                                 <!--Footer-->
                                 <div class="flex justify-end pt-2">
@@ -149,7 +113,8 @@ $name_old_region_after_fetch = mysqli_fetch_assoc($name_old_region)["name"];
         </div>
     </form>
     <script src="../../dist/sandbox.js"></script>
-    <script src="../scripts/modalupdate.js"></script>
+    <script src="../../scripts/modalupdate.js"></script>
+    <script src=""></script>
 </body>
 
 </html>
