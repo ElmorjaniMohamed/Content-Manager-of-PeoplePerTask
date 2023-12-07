@@ -12,6 +12,10 @@ $region = mysqli_query($conn, $qeury_region);
 
 $qeury_cities = "SELECT * FROM cities";
 $cities = mysqli_query($conn, $qeury_cities);
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -22,10 +26,14 @@ $cities = mysqli_query($conn, $qeury_cities);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../dist/output.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link rel="shortcut icon" href="/images/main-logo.svg" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Ruslan+Display&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+    <link rel="stylesheet"
+        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
     <script src="../../dist/sandbox.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -43,7 +51,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
                     <i class="ri-bubble-chart-line"></i>
-                    <a href="#"><span class="mx-4">Statistic</span></a>
+                    <a href="./Statistic/statistic.php"><span class="mx-4">Statistic</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -53,7 +61,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Users.html"><span class="mx-4">Users</span></a>
+                    <a href="./users.php"><span class="mx-4">Users</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -63,7 +71,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Freelancers.html"><span class="mx-4">Freelancers</span></a>
+                    <a href="./Freelancers/Freelancers.php"><span class="mx-4">Freelancers</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -89,7 +97,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             </clipPath>
                         </defs>
                     </svg>
-                    <a href="dashboard.html"><span class="mx-4">Project</span></a>
+                    <a href="./Projects/projects.php"><span class="mx-4">Project</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
@@ -99,7 +107,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Categories.html"><span class="mx-4">Categories</span></a>
+                    <a href="./Categories/Categories.php"><span class="mx-4">Categories</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -282,99 +290,6 @@ $cities = mysqli_query($conn, $qeury_cities);
                     </div>
                 </nav>
             </div>
-            <div class="flex flex-wrap bg-pink-500 ">
-                <div class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5 mb-4">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-3 xl:mb-0 shadow-lg">
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-wrap">
-                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <h5 class="text-blueGray-400 uppercase font-bold text-xs"> Traffic</h5>
-                                    <span class="font-semibold text-xl text-blueGray-700">334,100</span>
-                                </div>
-                                <div class="relative w-auto pl-4 flex-initial">
-                                    <div
-                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-red-500">
-                                        <i class="fas fa-chart-bar"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-sm text-blueGray-400 mt-4">
-                                <span class="text-emerald-500 mr-2"><i class="fas fa-arrow-up"></i> 2,99% </span>
-                                <span class="whitespace-nowrap"> Since last month </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class=" mt-4 w-full lg:w-6/12 xl:w-3/12 px-5">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-4 xl:mb-0 shadow-lg">
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-wrap">
-                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <h5 class="text-blueGray-400 uppercase font-bold text-xs">New users</h5>
-                                    <span class="font-semibold text-xl text-blueGray-700">2,999</span>
-                                </div>
-                                <div class="relative w-auto pl-4 flex-initial">
-                                    <div
-                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-pink-500">
-                                        <i class="fas fa-chart-pie"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-sm text-blueGray-400 mt-4">
-                                <span class="text-red-500 mr-2"><i class="fas fa-arrow-down"></i> 4,01%</span>
-                                <span class="whitespace-nowrap"> Since last week </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-wrap">
-                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <h5 class="text-blueGray-400 uppercase font-bold text-xs">Sales</h5>
-                                    <span class="font-semibold text-xl text-blueGray-700">901</span>
-                                </div>
-                                <div class="relative w-auto pl-4 flex-initial">
-                                    <div
-                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-lightBlue-500">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-sm text-blueGray-400 mt-4">
-                                <span class="text-red-500 mr-2"><i class="fas fa-arrow-down"></i> 1,25% </span>
-                                <span class="whitespace-nowrap"> Since yesterday </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-4 w-full lg:w-6/12 xl:w-3/12 px-5">
-                    <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                        <div class="flex-auto p-4">
-                            <div class="flex flex-wrap">
-                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                    <h5 class="text-blueGray-400 uppercase font-bold text-xs">Performance</h5>
-                                    <span class="font-semibold text-xl text-blueGray-700">51.02% </span>
-                                </div>
-                                <div class="relative w-auto pl-4 flex-initial">
-                                    <div
-                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full  bg-emerald-500">
-                                        <i class="fas fa-percent"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-sm text-blueGray-400 mt-4">
-                                <span class="text-emerald-500 mr-2"><i class="fas fa-arrow-up"></i> 12% </span>
-                                <span class="whitespace-nowrap"> Since last mounth </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <form action="create.php" method="POST">
                 <div>
@@ -497,6 +412,9 @@ $cities = mysqli_query($conn, $qeury_cities);
                             <th
                                 class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
                                 CITY</th>
+                            <th
+                                class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                                Status</th>
                             <th
                                 class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
                                 ACTION</th>

@@ -1,25 +1,14 @@
 <?php
-include("../../../php/conn.php");
+// connexion
+include_once("../../../php/conn.php");
 
 $id = $_GET['id'];
 
-$qeury = "SELECT * FROM Freelancers WHERE  FreelancerID = $id";
+$qeury = "SELECT * FROM categories Where CategoryID = $id";
 $result = mysqli_query($conn, $qeury);
 
-$row2 = mysqli_fetch_assoc($result);
-
-$qeury_user = "SELECT * FROM users";
-$userS = mysqli_query($conn, $qeury_user);
-
-$qeury_region = "SELECT * FROM regions";
-$region = mysqli_query($conn, $qeury_region);
-
-$qeury_cities = "SELECT * FROM cities";
-$cities = mysqli_query($conn, $qeury_cities);
-
+$row = mysqli_fetch_array($result);
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,8 +28,7 @@ $cities = mysqli_query($conn, $qeury_cities);
 </head>
 
 <body class="font-poppins dark:bg-gray-900 text-mainBlue dark:text-white">
-
-    <form action="../Freelancers/updateFreelancer.php" method="POST">
+    <form action="../Categories/update.php" method="POST">
         <div>
             <div>
                 <div class="flex justify-center pt-4">
@@ -67,8 +55,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             <div class="modal-content py-4 text-left px-6">
                                 <!--Title-->
                                 <div class="flex justify-between items-center pb-3">
-                                    <p class="text-2xl text-center text-mainBlue font-bold">Add Your
-                                        Information
+                                    <p class="text-2xl text-center text-mainBlue font-bold">Add Categories
                                     </p>
                                     <div class="modal-close cursor-pointer z-50">
                                         <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg"
@@ -81,22 +68,16 @@ $cities = mysqli_query($conn, $qeury_cities);
                                 </div>
 
                                 <!--Body-->
-                                <input type="hidden" id="FreelancerID" name="FreelancerID" value="<?= $id ?>" >
-                                <label for="name" class="text-gray-800 text-sm font-bold">Name</label>
-                                <input id="name" name="name" value="<?= $row2["FreelancerName"] ?>"
+                                <input type="hidden" id="CategoryID" name="CategoryID" value="<?= $id ?>">
+                                <label for="CategoryName" class="text-gray-800 text-sm font-bold">Name</label>
+                                <input id="CategoryName" name="CategoryName" value="<?= $row["CategoryName"] ?>" 
                                     class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                    placeholder="Ex: Mohamed El Morjani" />
-                                <label for="skills" 
-                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Skills</label>
-                                <input id="email" name="skills" value="<?= $row2["Skills"] ?>"
+                                    placeholder="Desgin..." />
+                                <label for="Description"
+                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>
+                                <input id="Description" name="Description" value="<?= $row["Description"] ?>" 
                                     class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                    placeholder="Ex: Desgin..." />
-                                <label for="job"
-                                    class="text-gray-800 text-sm font-bold leading-tight tracking-normal">job</label>
-                                <input id="password" name="job" value="<?= $row2["Job"] ?>"
-                                    class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                    placeholder="Ex: Developper, Desginer..." />
-
+                                    placeholder="Description..."/>
                                 <!--Footer-->
                                 <div class="flex justify-end pt-2">
                                     <button name="submit" type="submit"
@@ -112,6 +93,7 @@ $cities = mysqli_query($conn, $qeury_cities);
             </div>
         </div>
     </form>
+    </section>
     <script src="../../dist/sandbox.js"></script>
     <script src="../../scripts/modalupdate.js"></script>
 </body>

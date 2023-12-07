@@ -1,15 +1,23 @@
+<?php
+// connexion
+include_once("../../../php/conn.php"); 
+
+$qeury_Category = "SELECT * FROM categories";
+$Categories = mysqli_query($conn, $qeury_Category);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../dist/output.css">
+    <link rel="stylesheet" href="../../../dist/output.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Ruslan+Display&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="../../dist/sandbox.js"></script>
+    <script src="../../../dist/sandbox.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <title>PeoplePerTask</title>
@@ -20,13 +28,13 @@
         <side
             class="hidden md:block dark:bg-indigo-950 dark:border-none text-base rounded-3xl w-[25%]  py-[1%] px-[1%]  border">
             <div class="mb-[15%]">
-                <img src="../../images/Link_logo.svg.svg" alt="logo">
+                <img src="../../../images/Link_logo.svg.svg" alt="logo">
             </div>
             <ul class=" ml-[2%] mb-[10%] text-lg">
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
                     <i class="ri-bubble-chart-line"></i>
-                    <a href="#"><span class="mx-4">Statistic</span></a>
+                    <a href="../Statistic/statistic.php"><span class="mx-4">Statistic</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -36,7 +44,7 @@
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Users.html"><span class="mx-4">Users</span></a>
+                    <a href="../users.php"><span class="mx-4">Users</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -72,7 +80,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    <a href="#"><span class="mx-4">Project</span></a>
+                    <a href="../Projects/projects.php"><span class="mx-4">Project</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
@@ -82,7 +90,7 @@
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Categories.html"><span class="mx-4">Categories</span></a>
+                    <a href="../Categories/Categories.php"><span class="mx-4">Categories</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -137,11 +145,11 @@
             </ul>
             <div class="flex flex-row ml-[4%]  my-[40%]">
                 <div class="rounded-[50%] bg-slate-400 mr-[7%]">
-                    <img class="rounded-[50%]" src="../../images/young man in formalwear standing with hands on hip.svg"
-                        alt="freelencer">
+                    <img class="rounded-[50%]"
+                        src="../../../images/young man in formalwear standing with hands on hip.svg" alt="freelencer">
                 </div>
                 <div class="text-black dark:text-white">
-                    <h1 class="text-2xl">Ali Riaz</h1>
+                    <h1 class="text-2xl"></h1>
                     <p>Web Developer</p>
                 </div>
             </div>
@@ -152,7 +160,7 @@
                 <div class="text-black dark:text-white">
                     <div class="flex gap-2">
                         <h2 class="font-bold text-2xl"> Welcome Back,Ali</h2>
-                        <img src="../../images/Waving_Hand_Emoji.svg" alt="waving hand">
+                        <img src="../../../images/Waving_Hand_Emoji.svg" alt="waving hand">
                     </div>
                     <p class="text-textG text-base">Here's what's happening with your store touday</p>
                 </div>
@@ -160,7 +168,7 @@
                     <div id="search"
                         class="flex flex-row justify-between text-xs border-4 w-72 rounded-3xl p-1 dark:bg-indigo-950 dark:border-none">
                         <p class="ml-[6%]">search for anyting</p>
-                        <img class="mr-[10%]" src="../../images/search-2905 1.svg" alt="search">
+                        <img class="mr-[10%]" src="../../../images/search-2905 1.svg" alt="search">
                     </div>
                 </div>
 
@@ -260,53 +268,154 @@
                         <a href="#"><span>Job Apply</span></a>
                         <div class="md:hidden flex flex-row items-center border w-48 rounded-xl p-1">
                             <p class="mr-[60%] font-light">search</p>
-                            <img src="../../images/search-2905 1.svg" alt="search">
+                            <img src="../../../images/search-2905 1.svg" alt="search">
                         </div>
                     </div>
                 </nav>
             </div>
-            <div
-                class="table-auto text-black dark:text-white dark:bg-indigo-950 p-4 w-[90%] m-[2%] pl-[5%] py-[2%] rounded-2xl border dark:border-none">
-                <table class="min-w-full text-left text-sm font-light w-[95%] border-2 dark:border-white text-center">
-                    <thead class="border-b-2 font-medium text-slate-100 bg- text">
-                        <tr class="border-b-2 text-xl bg-mainBlue dark:bg-purple-500 text-white">
-                            <th scope="col" class="px-6 py-4 text- ">ID</th>
-                            <th scope="col" class="px-6 py-4 text- ">NAME</th>
+            <form action="create.php" method="POST">
+                <div>
+                    <div>
+                        <div class="flex justify-center pt-4">
+                            <button
+                                class="modal-open ml-2 px-4 py-2 font-medium text-white bg-lime-500 rounded-md hover:bg-lime-600 focus:outline-none focus:shadow-outline-red active:bg-lime-600 transition duration-150 ease-in-out">Add
+                                Category</button>
+
+                            <!--Modal-->
+                            <div
+                                class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+                                <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50">
+                                </div>
+
+                                <div
+                                    class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+
+                                    <div
+                                        class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+                                        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg"
+                                            width="18" height="18" viewBox="0 0 18 18">
+                                            <path
+                                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                            </path>
+                                        </svg>
+                                    </div>
+
+                                    <!-- Add margin if you want to see some of the overlay behind the modal-->
+                                    <div class="modal-content py-4 text-left px-6">
+                                        <!--Title-->
+                                        <div class="flex justify-between items-center pb-3">
+                                            <p class="text-2xl text-center text-mainBlue font-bold">Add Categories
+                                            </p>
+                                            <div class="modal-close cursor-pointer z-50">
+                                                <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg"
+                                                    width="18" height="18" viewBox="0 0 18 18">
+                                                    <path
+                                                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        <!--Body-->
+                                        <input type="hidden" id="CategoryID" name="CategoryID">
+                                        <label for="CategoryName" class="text-gray-800 text-sm font-bold">Name</label>
+                                        <input id="CategoryName" name="CategoryName"
+                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                                            placeholder="Desgin..." />
+                                        <label for="Description"
+                                            class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Description</label>
+                                        <input id="Description" name="Description"
+                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                                            placeholder="Description..." />
+                                        <!--Footer-->
+                                        <div class="flex justify-end pt-2">
+                                            <button name="submit" type="submit"
+                                                class="px-4 bg-transparent p-2 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Submit</button>
+                                            <button
+                                                class="modal-close px-4 bg-mainBlue p-2 rounded-lg text-white hover:bg-indigo-400">Close</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Form add -->
+
+            <div class=" text-white dark:text-white dark:bg-indigo-950 p-4  m-[2%] rounded-2xl border dark:border-none">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                            <th
+                                class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                                NAME</th>
+                            <th
+                                class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                                Description</th>
+                            <th
+                                class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                                ACTION</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="border-b dark:border-neutral-500">
-                            <td class="whitespace-nowrap px-6 py-4">Cell</td>
-                            <td class="whitespace-nowrap px-6 py-4">Cell</td>
-                        </tr>
-                    </tbody>
+                    <tbody class=" divide-y divide-gray-200">
+                        <?php
+
+                        $sql = "SELECT `CategoryID`, `CategoryName`, `Description` FROM `categories`";
+                        $result = mysqli_query($conn, $sql);
+
+
+                        while ($row = mysqli_fetch_assoc($result)):
+
+                            $CategoryID = $row["CategoryID"];
+                            $CategoryName = $row["CategoryName"];
+                            $Description = $row["Description"];
+                            ?>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <?= $CategoryName ?>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <?= $Description ?>
+                                </td>
+                                <td class="flex flex-row px-6 py-4 whitespace-nowrap">
+                                    <div>
+                                        <form method="get">
+                                            <button type="button" id="open-modal"
+                                                class="ml-2 px-4 py-2 font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:shadow-outline-red active:bg-green-600 transition duration-150 ease-in-out">
+                                                <a href="../Categories/EditCategory.php?id=<?= $CategoryID ?>">Edit</a>
+                                            </button>
+
+                                        </form>
+                                    </div>
+                                    <form method="get">
+                                        <button type="button" onclick="return confirmDelete()"
+                                            class="ml-2 px-4 py-2 font-medium text-white bg-red-400 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
+                                            <a href="../Categories/delete.php?id=<?= $CategoryID ?>">Delete</a></button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <?php
+                        endwhile;
+                        ?>
                 </table>
             </div>
         </main>
+        
     </section>
+    <script src="../../scripts/modal.js"></script>
+
     <script>
-        // --------Mode
-        const themeToggleBtn = document.querySelector(".theme-toggle");
-        const toggleLightTheme = () => {
-            document.documentElement.classList.remove("fillB");
-        };
-        const toggleDarkTheme = () => {
-            document.documentElement.classList.add("fillB");
-        };
-        const switchTheme = () => {
-            const currentTheme = document.documentElement.classList.contains("fillB") ? "fillB" : "light";
-            if (currentTheme === "fillB") {
-                toggleLightTheme();
-            } else {
-                toggleDarkTheme();
-            }
-        };
-        themeToggleBtn.addEventListener("click", switchTheme);
-        // Apply the initial dark theme class
-        document.documentElement.classList.add("fillB");
-        // --------Mode
+        function confirmDelete() {
+            var confirmation = confirm(`Are you sure you want to delete this employee?`);
+            return confirmation;
+        }
     </script>
-    </script>
+
 </body>
 
 </html>

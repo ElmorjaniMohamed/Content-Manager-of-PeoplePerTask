@@ -26,7 +26,7 @@ $cities = mysqli_query($conn, $qeury_cities);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Ruslan+Display&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="../../dist/sandbox.js"></script>
+    <script src="../../../dist/sandbox.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <title>PeoplePerTask</title>
@@ -43,7 +43,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
                     <i class="ri-bubble-chart-line"></i>
-                    <a href="#"><span class="mx-4">Statistic</span></a>
+                    <a href="../Statistic/statistic.php"><span class="mx-4">Statistic</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -53,7 +53,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Users.html"><span class="mx-4">Users</span></a>
+                    <a href="../users.php"><span class="mx-4">Users</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -63,7 +63,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Freelancers.html"><span class="mx-4">Freelancers</span></a>
+                    <a href="./Freelancers.php"><span class="mx-4">Freelancers</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -89,7 +89,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             </clipPath>
                         </defs>
                     </svg>
-                    <a href="dashboard.html"><span class="mx-4">Project</span></a>
+                    <a href="../Projects/projects.php"><span class="mx-4">Project</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
@@ -99,7 +99,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Categories.html"><span class="mx-4">Categories</span></a>
+                    <a href="../Categories/Categories.php"><span class="mx-4">Categories</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -328,14 +328,14 @@ $cities = mysqli_query($conn, $qeury_cities);
                                         </div>
 
                                         <!--Body-->
-                                        <input type="hidden" id="FreelancerID" name="FreelancerID" >
+                                        <input type="hidden" id="FreelancerID" name="FreelancerID">
                                         <label for="name" class="text-gray-800 text-sm font-bold">Name</label>
                                         <input id="name" name="name"
                                             class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                             placeholder="Ex: Mohamed El Morjani" />
                                         <label for="skills"
                                             class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Skills</label>
-                                        <input id="email" name="skills"
+                                        <input id="skills" name="skills"
                                             class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                             placeholder="Ex: Desgin..." />
                                         <label for="job"
@@ -431,15 +431,16 @@ $cities = mysqli_query($conn, $qeury_cities);
             </div>
         </main>
     </section>
+    <script src="../../scripts/modal.js"></script>
+
+    <script>
+        function confirmDelete() {
+            var confirmation = confirm(`Are you sure you want to delete this employee?`);
+            return confirmation;
+        }
+    </script>
+
 
 </body>
-<script src="../../scripts/modal.js"></script>
-
-<script>
-    function confirmDelete() {
-        var confirmation = confirm(`Are you sure you want to delete this employee?`);
-        return confirmation;
-    }
-</script>
 
 </html>
