@@ -2,9 +2,7 @@
 // connexion
 include_once("../../../php/conn.php");
 
-
-
-
+session_start();
 
 
 $qeury_categories = "SELECT * FROM categories";
@@ -43,7 +41,7 @@ $projects = mysqli_query($conn, $qeury_projects);
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
                     <i class="ri-bubble-chart-line"></i>
-                    <a href="#"><span class="mx-4">Statistic</span></a>
+                    <a href="../Statistic/statistic.php"><span class="mx-4">Statistic</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -53,7 +51,7 @@ $projects = mysqli_query($conn, $qeury_projects);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Users.html"><span class="mx-4">Users</span></a>
+                    <a href="../users.php"><span class="mx-4">Users</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -63,7 +61,7 @@ $projects = mysqli_query($conn, $qeury_projects);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Freelancers.html"><span class="mx-4">Freelancers</span></a>
+                    <a href="../Freelancers/Freelancers.php"><span class="mx-4">Freelancers</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -89,7 +87,7 @@ $projects = mysqli_query($conn, $qeury_projects);
                             </clipPath>
                         </defs>
                     </svg>
-                    <a href="dashboard.html"><span class="mx-4">Project</span></a>
+                    <a href="../Projects/projects.php"><span class="mx-4">Project</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
@@ -99,7 +97,7 @@ $projects = mysqli_query($conn, $qeury_projects);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="Categories.html"><span class="mx-4">Categories</span></a>
+                    <a href="../Categories/Categories.php"><span class="mx-4">Categories</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -168,7 +166,9 @@ $projects = mysqli_query($conn, $qeury_projects);
             <nav class="flex flex-row justify-between items-center p-[1%]">
                 <div class="text-black dark:text-white">
                     <div class="flex gap-2">
-                        <h2 class="font-bold text-2xl"> Welcome Back,Ali</h2>
+                        <h2 class="font-bold text-2xl"> Welcome Back, <span class="text-yellow-500">
+                                <?php echo $_SESSION["username"] ?>
+                            </span></h2>
                         <img src="../../../images/Waving_Hand_Emoji.svg" alt="waving hand">
                     </div>
                     <p class="text-textG text-base">Here's what's happening with your store touday</p>
@@ -328,29 +328,38 @@ $projects = mysqli_query($conn, $qeury_projects);
                                         </div>
 
                                         <!--Body-->
-                                        <input type="hidden" name="ProjectID" >
+                                        <input type="hidden" name="ProjectID">
                                         <label for="ProjectTitle" class="text-gray-800 text-sm font-bold">Name</label>
                                         <input id="ProjectTitle" name="ProjectTitle"
                                             class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                             placeholder="Ex: Name Project" />
                                         <label for="DescriptionProject"
                                             class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Tilte</label>
-                                        <input id="DescriptionProject" name="DescriptionProject"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                            placeholder="Ex: Description Project" />
+                                        <textarea cols="30" rows="10" id="DescriptionProject" name="DescriptionProject"
+                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-16 pl-3 text-sm border-gray-300 rounded border">
+                                            
+                                        </textarea>
                                         <label for="Category"
                                             class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Category</label>
-                                        <input id="CategoryID" name="CategoryID"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                            placeholder="Ex: Desgin..." />
+                                        <select id="CategoryID" name="CategoryID"
+                                        class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+                                            <?php
+                                            $sql = "SELECT * FROM categories";
+                                            $result = mysqli_query($conn, $sql);
 
-                                        <label for="Category"
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "<option value='$row[CategoryID]'> $row[CategoryName] </option>";
+                                            }
+                                            ?>
+                                        </select>
+
+                                        <label for="username"
                                             class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Username</label>
                                         <select id="default" name="username"
                                             class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                                             <?php
-                                                $qeury_user = "SELECT * FROM users";
-                                                $userS = mysqli_query($conn, $qeury_user);
+                                            $qeury_user = "SELECT * FROM users";
+                                            $userS = mysqli_query($conn, $qeury_user);
                                             while ($row = mysqli_fetch_assoc($userS)) {
                                                 echo "<option value='$row[userid]'> $row[username] </option>";
                                             }
@@ -374,9 +383,6 @@ $projects = mysqli_query($conn, $qeury_projects);
                 </div>
             </form>
             <!-- Form add -->
-
-
-
 
             <div class=" text-white dark:text-white dark:bg-indigo-950 p-4  m-[2%] rounded-2xl border dark:border-none">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -402,17 +408,18 @@ $projects = mysqli_query($conn, $qeury_projects);
                     <tbody class=" divide-y divide-gray-200">
                         <?php
 
-                        $sql = "SELECT `username`, `ProjectID`, `ProjectTitle`, `DescriptionProject`, `CategoryID`, `SubCategoryID` FROM projects left join users on users.userid = projects.UserID ";
+                        $sql = "SELECT `CategoryName`, `username`, `ProjectID`, `ProjectTitle`, `DescriptionProject`, `SubCategoryID` FROM projects left join users on users.userid = projects.UserID 
+                        left join categories on projects.CategoryID=categories.CategoryID";
                         $result = mysqli_query($conn, $sql);
 
 
                         while ($row = mysqli_fetch_assoc($result)):
 
-                            $ProjectID = $row ["ProjectID"];
+                            $ProjectID = $row["ProjectID"];
                             $username = $row["username"];
                             $ProjectTitle = $row["ProjectTitle"];
                             $DescriptionProject = $row["DescriptionProject"];
-                            // $Category = $row["CategoryID"];
+                            $Category = $row["CategoryName"];
                         
                             ?>
                             <tr>
@@ -426,7 +433,7 @@ $projects = mysqli_query($conn, $qeury_projects);
                                     <?= $DescriptionProject ?>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-
+                                    <?=$Category?>
                                 </td>
                                 <td class="flex flex-row px-6 py-4 whitespace-nowrap">
                                     <div>
@@ -463,6 +470,20 @@ $projects = mysqli_query($conn, $qeury_projects);
         var confirmation = confirm(`Are you sure you want to delete this employee?`);
         return confirmation;
     }
+</script>
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
 </script>
 
 </html>

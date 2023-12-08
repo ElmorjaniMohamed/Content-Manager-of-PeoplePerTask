@@ -6,10 +6,15 @@ require("../../../php/conn.php");
 $query = "SELECT userid FROM users";
 $result = mysqli_query($conn, $query);
 
+$qeury_Category = "SELECT CategoryID FROM categories";
+$result_Category = mysqli_query($conn, $qeury_Category);
+
 $ProjectID = $_POST["ProjectID"];
 $ProjectTitle = $_POST["ProjectTitle"];
 $DescriptionProject = $_POST["DescriptionProject"];
-// $Category = $_POST["CategoryID"];
+$CategoryID = $_POST['CategoryID'];
+
+
 
 if ($result) {
     // Récupérer la première ligne du résultat (vous pouvez ajuster cela en fonction de vos besoins)
@@ -17,11 +22,12 @@ if ($result) {
 
     // Assurez-vous qu'une ligne a été récupérée
     if ($row) {
-        // Récupérer le userid de la première ligne
+        
         $UserID = $row['userid'];
-
+       
+    
         // Utilisez la variable $UserID dans votre requête d'insertion
-        $sql = "INSERT INTO projects (`ProjectTitle`, `DescriptionProject`, `UserID`) VALUES ('$ProjectTitle', '$DescriptionProject', $UserID)";
+        $sql = "INSERT INTO projects (`ProjectTitle`, `DescriptionProject`, `UserID`, `CategoryID`) VALUES ('$ProjectTitle', '$DescriptionProject', $UserID, $CategoryID)";
 
         // Exécutez la requête
         $insertResult = mysqli_query($conn, $sql);

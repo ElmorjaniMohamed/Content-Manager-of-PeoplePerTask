@@ -1,19 +1,13 @@
 <?php
 // connexion
-include_once("../../../php/conn.php");
+include_once("../../../php/conn.php"); 
 
+$qeury_Testimenials = "SELECT * FROM testimonials";
+$qeury_Testimenials = mysqli_query($conn, $qeury_Testimenials);
 
-
-$qeury_user = "SELECT * FROM users";
-$userS = mysqli_query($conn, $qeury_user);
-
-$qeury_region = "SELECT * FROM regions";
-$region = mysqli_query($conn, $qeury_region);
-
-$qeury_cities = "SELECT * FROM cities";
-$cities = mysqli_query($conn, $qeury_cities);
+$qeury_users = "SELECT * FROM users";
+$users = mysqli_query($conn, $qeury_users);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,7 +57,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
-                    <a href="./Freelancers.php"><span class="mx-4">Freelancers</span></a>
+                    <a href="../Freelancers/Freelancers.php"><span class="mx-4">Freelancers</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -90,6 +84,16 @@ $cities = mysqli_query($conn, $qeury_cities);
                         </defs>
                     </svg>
                     <a href="../Projects/projects.php"><span class="mx-4">Project</span></a>
+                </li>
+                <li
+                    class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22">
+                        <path
+                            d="M20.6667 20.5V12.625M12 20.5V9.25M3.33337 20.5L3.33337 16M13.5239 3.65594L19.1231 5.83638M10.6987 4.07604L4.63362 8.79981M21.8158 5.24426C22.4504 5.90327 22.4504 6.97173 21.8158 7.63074C21.1812 8.28975 20.1523 8.28975 19.5177 7.63074C18.8831 6.97173 18.8831 5.90327 19.5177 5.24426C20.1523 4.58525 21.1812 4.58525 21.8158 5.24426ZM4.48242 8.61926C5.11702 9.27827 5.11702 10.3467 4.48242 11.0057C3.84782 11.6648 2.81893 11.6648 2.18433 11.0057C1.54972 10.3467 1.54972 9.27827 2.18433 8.61926C2.81893 7.96025 3.84782 7.96025 4.48242 8.61926ZM13.1491 1.86926C13.7837 2.52827 13.7837 3.59673 13.1491 4.25574C12.5145 4.91475 11.4856 4.91475 10.851 4.25574C10.2164 3.59673 10.2164 2.52827 10.851 1.86926C11.4856 1.21025 12.5145 1.21025 13.1491 1.86926Z"
+                            stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <a href="../Categories/Categories.php"><span class="mx-4">Categories</span></a>
                 </li>
                 <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
@@ -272,14 +276,13 @@ $cities = mysqli_query($conn, $qeury_cities);
                     </div>
                 </nav>
             </div>
-
-            <form action="../Freelancers/create.php" method="POST">
+            <form action="create.php" method="POST">
                 <div>
                     <div>
                         <div class="flex justify-center pt-4">
                             <button
                                 class="modal-open ml-2 px-4 py-2 font-medium text-white bg-lime-500 rounded-md hover:bg-lime-600 focus:outline-none focus:shadow-outline-red active:bg-lime-600 transition duration-150 ease-in-out">Add
-                                Freelancer</button>
+                                Testimonial</button>
 
                             <!--Modal-->
                             <div
@@ -304,8 +307,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                                     <div class="modal-content py-4 text-left px-6">
                                         <!--Title-->
                                         <div class="flex justify-between items-center pb-3">
-                                            <p class="text-2xl text-center text-mainBlue font-bold">Add Your
-                                                Information
+                                            <p class="text-2xl text-center text-mainBlue font-bold">Add Your Comment
                                             </p>
                                             <div class="modal-close cursor-pointer z-50">
                                                 <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg"
@@ -318,22 +320,26 @@ $cities = mysqli_query($conn, $qeury_cities);
                                         </div>
 
                                         <!--Body-->
-                                        <input type="hidden" id="FreelancerID" name="FreelancerID">
-                                        <label for="name" class="text-gray-800 text-sm font-bold">Name</label>
-                                        <input id="name" name="name"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                            placeholder="Ex: Mohamed El Morjani" />
-                                        <label for="skills"
-                                            class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Skills</label>
-                                        <input id="skills" name="skills"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                            placeholder="Ex: Desgin..." />
-                                        <label for="job"
-                                            class="text-gray-800 text-sm font-bold leading-tight tracking-normal">job</label>
-                                        <input id="password" name="job"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                            placeholder="Ex: Developper, Desginer..." />
+                                        <input type="hidden" id="TestimonialID" name="TestimonialID">
+                                        <label for="username"
+                                            class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Username</label>
+                                        <select id="default" name="username"
+                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+                                            <?php
+                                                $qeury_user = "SELECT * FROM users";
+                                                $userS = mysqli_query($conn, $qeury_user);
+                                            while ($row = mysqli_fetch_assoc($userS)) {
+                                                echo "<option value='$row[userid]'> $row[username] </option>";
+                                            }
+                                            ?>
 
+                                        </select>
+                                        <label for="Comment"
+                                            class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Comment</label>
+                                        <textarea id="Comment" name="Comment" cols="30" rows="10"
+                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                                            placeholder="Comment..." />
+                                        </textarea>
                                         <!--Footer-->
                                         <div class="flex justify-end pt-2">
                                             <button name="submit" type="submit"
@@ -349,6 +355,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                     </div>
                 </div>
             </form>
+
             <!-- Form add -->
 
             <div class=" text-white dark:text-white dark:bg-indigo-950 p-4  m-[2%] rounded-2xl border dark:border-none">
@@ -357,13 +364,10 @@ $cities = mysqli_query($conn, $qeury_cities);
                         <tr>
                             <th
                                 class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
-                                NAME</th>
+                                USERNAME</th>
                             <th
                                 class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
-                                skills</th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
-                                Job</th>
+                                COMMENT</th>
                             <th
                                 class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
                                 ACTION</th>
@@ -372,43 +376,28 @@ $cities = mysqli_query($conn, $qeury_cities);
                     <tbody class=" divide-y divide-gray-200">
                         <?php
 
-                        $sql = "SELECT `FreelancerID`, `FreelancerName`, `Skills`, `Job`, `UserID` FROM `freelancers`";
+                        $sql = "SELECT `username`, `TestimonialID`, `Comment` FROM `testimonials` INNER join users on users.userid = testimonials.UserID";
                         $result = mysqli_query($conn, $sql);
 
 
                         while ($row = mysqli_fetch_assoc($result)):
 
-
-                            $FreelancerID = $row["FreelancerID"];
-                            $FreelancerName = $row["FreelancerName"];
-                            $skills = $row["Skills"];
-                            $Job = $row["Job"];
-                            $UserID = $row["UserID"];
+                            $username = $row["username"];
+                            $TestimonialID = $row["TestimonialID"];
+                            $Comment = $row["Comment"];
                             ?>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <?= $FreelancerName ?>
+                                    <?= $username ?>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <?= $skills ?>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <?= $Job ?>
+                                    <?= $Comment ?>
                                 </td>
                                 <td class="flex flex-row px-6 py-4 whitespace-nowrap">
-                                    <div>
-                                        <form method="get">
-                                            <button type="button" id="open-modal"
-                                                class="ml-2 px-4 py-2 font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:shadow-outline-red active:bg-green-600 transition duration-150 ease-in-out">
-                                                <a href="../Freelancers/EditForm.php?id=<?= $FreelancerID ?>">Edit</a>
-                                            </button>
-
-                                        </form>
-                                    </div>
                                     <form method="get">
                                         <button type="button" onclick="return confirmDelete()"
                                             class="ml-2 px-4 py-2 font-medium text-white bg-red-400 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
-                                            <a href="../Freelancers/delete.php?id=<?= $FreelancerID ?>">Delete</a></button>
+                                            <a href="../Testimonials/delete.php?id=<?= $TestimonialID ?>">Delete</a></button>
                                     </form>
                                 </td>
                             </tr>
@@ -420,6 +409,7 @@ $cities = mysqli_query($conn, $qeury_cities);
                 </table>
             </div>
         </main>
+        
     </section>
     <script src="../../scripts/modal.js"></script>
 
@@ -429,7 +419,6 @@ $cities = mysqli_query($conn, $qeury_cities);
             return confirmation;
         }
     </script>
-
 
 </body>
 

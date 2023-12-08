@@ -4,12 +4,20 @@ include_once("../../php/conn.php");
 
 // create user
 if (isset($_POST["submit"])) {
-    
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $region = $_POST["region"];
-    $city = $_POST["city"];
+
+    function test_input($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    $username = test_input($_POST["username"]);
+    $email = test_input($_POST["email"]);
+    $password = test_input($_POST["password"]);
+    $region = test_input($_POST["region"]);
+    $city = test_input($_POST["city"]);
 
     $sql = "INSERT INTO users ( `username`, `email`, `Password`, `region_id`, `city_id`)
     VALUES ('$username','$email','$password',$region,$city);";

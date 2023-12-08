@@ -1,6 +1,10 @@
 <?php
 
 include_once("../../php/conn.php");
+
+if (!isset($_SESSION['user_id'])) {
+  header('location: signup2.php');
+}
 ?>
 
 <!DOCTYPE html>
