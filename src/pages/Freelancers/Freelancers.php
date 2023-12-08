@@ -92,16 +92,6 @@ $cities = mysqli_query($conn, $qeury_cities);
                     <a href="../Projects/projects.php"><span class="mx-4">Project</span></a>
                 </li>
                 <li
-                    class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700 hover:scale-110 rounded mb-[10%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22">
-                        <path
-                            d="M20.6667 20.5V12.625M12 20.5V9.25M3.33337 20.5L3.33337 16M13.5239 3.65594L19.1231 5.83638M10.6987 4.07604L4.63362 8.79981M21.8158 5.24426C22.4504 5.90327 22.4504 6.97173 21.8158 7.63074C21.1812 8.28975 20.1523 8.28975 19.5177 7.63074C18.8831 6.97173 18.8831 5.90327 19.5177 5.24426C20.1523 4.58525 21.1812 4.58525 21.8158 5.24426ZM4.48242 8.61926C5.11702 9.27827 5.11702 10.3467 4.48242 11.0057C3.84782 11.6648 2.81893 11.6648 2.18433 11.0057C1.54972 10.3467 1.54972 9.27827 2.18433 8.61926C2.81893 7.96025 3.84782 7.96025 4.48242 8.61926ZM13.1491 1.86926C13.7837 2.52827 13.7837 3.59673 13.1491 4.25574C12.5145 4.91475 11.4856 4.91475 10.851 4.25574C10.2164 3.59673 10.2164 2.52827 10.851 1.86926C11.4856 1.21025 12.5145 1.21025 13.1491 1.86926Z"
-                            stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                    <a href="../Categories/Categories.php"><span class="mx-4">Categories</span></a>
-                </li>
-                <li
                     class="flex p-3 mb-15 w-3/4 h-14 transition-transform duration-200 ease-out transform-colors dark:hover:bg-purple-700  hover:scale-110 rounded mb-[10%]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
                         <path

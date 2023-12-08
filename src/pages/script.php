@@ -53,13 +53,13 @@ function signup()
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     // Prepare a query
-    $sql = "INSERT INTO users (username, email, Password) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO users (username, email, Password, role) VALUES (?, ?, ?, ?)";
 
     // Prepare a statement
     $stmt = mysqli_prepare($conn, $sql);
 
     // Bind parameters
-    mysqli_stmt_bind_param($stmt, 'sss', $username, $email, $hashedPassword);
+    mysqli_stmt_bind_param($stmt, 'ssss', $username, $email, $hashedPassword, $role);
 
     // Execute the prepared statement
     $result = mysqli_stmt_execute($stmt);

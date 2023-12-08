@@ -5,10 +5,6 @@ include_once("../../../php/conn.php");
 session_start();
 
 
-
-
-
-
 $qeury_categories = "SELECT * FROM categories";
 $userS = mysqli_query($conn, $qeury_categories);
 
@@ -36,7 +32,7 @@ $projects = mysqli_query($conn, $qeury_projects);
 
 <body class="font-poppins dark:bg-gray-900 text-mainBlue dark:text-white">
     <section class="flex flex-row">
-    <side
+        <side
             class="hidden md:block dark:bg-indigo-950 dark:border-none text-base rounded-3xl w-[25%]  py-[1%] px-[1%]  border">
             <div class="mb-[15%]">
                 <img src="../../../images/Link_logo.svg.svg" alt="logo">
@@ -128,7 +124,7 @@ $projects = mysqli_query($conn, $qeury_projects);
                         <path
                             d="M9.021 13.1182L11.021 15.333L15.521 10.3496M20.021 13.6719C20.021 19.1076 14.667 23.0611 12.719 24.3196C12.4976 24.4626 12.3869 24.5342 12.2307 24.5713C12.1094 24.6001 11.9326 24.6001 11.8113 24.5713C11.6551 24.5342 11.5444 24.4626 11.323 24.3196C9.37496 23.0611 4.021 19.1076 4.021 13.6719V8.37575C4.021 7.49036 4.021 7.04766 4.15176 6.66712C4.26727 6.33094 4.45498 6.03098 4.69865 5.79317C4.97449 5.52396 5.34879 5.36852 6.0974 5.05764L11.4592 2.83097C11.6671 2.74464 11.771 2.70147 11.878 2.68436C11.9728 2.66918 12.0692 2.66918 12.164 2.68436C12.271 2.70147 12.3749 2.74464 12.5828 2.83097L17.9446 5.05764C18.6932 5.36852 19.0675 5.52396 19.3433 5.79317C19.587 6.03098 19.7747 6.33094 19.8902 6.66712C20.021 7.04766 20.021 7.49036 20.021 8.37575V13.6719Z"
                             stroke="#6366F1" class="dark:stroke-white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round"/>
+                            stroke-linejoin="round" />
                         <rect x="0.0209961" y="0.382812" width="24" height="26.5781" />
                     </svg>
                     <a href="#"><span class="mx-4">Security</span></a>
@@ -156,8 +152,8 @@ $projects = mysqli_query($conn, $qeury_projects);
             </ul>
             <div class="flex flex-row ml-[4%]  my-[40%]">
                 <div class="rounded-[50%] bg-slate-400 mr-[7%]">
-                    <img class="rounded-[50%]" src="../../../images/young man in formalwear standing with hands on hip.svg"
-                        alt="freelencer">
+                    <img class="rounded-[50%]"
+                        src="../../../images/young man in formalwear standing with hands on hip.svg" alt="freelencer">
                 </div>
                 <div class="text-black dark:text-white">
                     <h1 class="text-2xl">Ali Riaz</h1>
@@ -170,7 +166,9 @@ $projects = mysqli_query($conn, $qeury_projects);
             <nav class="flex flex-row justify-between items-center p-[1%]">
                 <div class="text-black dark:text-white">
                     <div class="flex gap-2">
-                        <h2 class="font-bold text-2xl"> Welcome Back, <span class="text-yellow-500"><?php echo $_SESSION["username"] ?></span></h2>
+                        <h2 class="font-bold text-2xl"> Welcome Back, <span class="text-yellow-500">
+                                <?php echo $_SESSION["username"] ?>
+                            </span></h2>
                         <img src="../../../images/Waving_Hand_Emoji.svg" alt="waving hand">
                     </div>
                     <p class="text-textG text-base">Here's what's happening with your store touday</p>
@@ -330,29 +328,38 @@ $projects = mysqli_query($conn, $qeury_projects);
                                         </div>
 
                                         <!--Body-->
-                                        <input type="hidden" name="ProjectID" >
+                                        <input type="hidden" name="ProjectID">
                                         <label for="ProjectTitle" class="text-gray-800 text-sm font-bold">Name</label>
                                         <input id="ProjectTitle" name="ProjectTitle"
                                             class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                             placeholder="Ex: Name Project" />
                                         <label for="DescriptionProject"
                                             class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Tilte</label>
-                                        <input id="DescriptionProject" name="DescriptionProject"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                            placeholder="Ex: Description Project" />
+                                        <textarea cols="30" rows="10" id="DescriptionProject" name="DescriptionProject"
+                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-16 pl-3 text-sm border-gray-300 rounded border">
+                                            
+                                        </textarea>
                                         <label for="Category"
                                             class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Category</label>
-                                        <input id="CategoryID" name="CategoryID"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                            placeholder="Ex: Desgin..." />
+                                        <select id="CategoryID" name="CategoryID"
+                                        class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
+                                            <?php
+                                            $sql = "SELECT * FROM categories";
+                                            $result = mysqli_query($conn, $sql);
+
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                echo "<option value='$row[CategoryID]'> $row[CategoryName] </option>";
+                                            }
+                                            ?>
+                                        </select>
 
                                         <label for="username"
                                             class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Username</label>
                                         <select id="default" name="username"
                                             class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
                                             <?php
-                                                $qeury_user = "SELECT * FROM users";
-                                                $userS = mysqli_query($conn, $qeury_user);
+                                            $qeury_user = "SELECT * FROM users";
+                                            $userS = mysqli_query($conn, $qeury_user);
                                             while ($row = mysqli_fetch_assoc($userS)) {
                                                 echo "<option value='$row[userid]'> $row[username] </option>";
                                             }
@@ -376,9 +383,6 @@ $projects = mysqli_query($conn, $qeury_projects);
                 </div>
             </form>
             <!-- Form add -->
-
-
-
 
             <div class=" text-white dark:text-white dark:bg-indigo-950 p-4  m-[2%] rounded-2xl border dark:border-none">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -404,17 +408,18 @@ $projects = mysqli_query($conn, $qeury_projects);
                     <tbody class=" divide-y divide-gray-200">
                         <?php
 
-                        $sql = "SELECT `username`, `ProjectID`, `ProjectTitle`, `DescriptionProject`, `CategoryID`, `SubCategoryID` FROM projects left join users on users.userid = projects.UserID ";
+                        $sql = "SELECT `CategoryName`, `username`, `ProjectID`, `ProjectTitle`, `DescriptionProject`, `SubCategoryID` FROM projects left join users on users.userid = projects.UserID 
+                        left join categories on projects.CategoryID=categories.CategoryID";
                         $result = mysqli_query($conn, $sql);
 
 
                         while ($row = mysqli_fetch_assoc($result)):
 
-                            $ProjectID = $row ["ProjectID"];
+                            $ProjectID = $row["ProjectID"];
                             $username = $row["username"];
                             $ProjectTitle = $row["ProjectTitle"];
                             $DescriptionProject = $row["DescriptionProject"];
-                            // $Category = $row["CategoryID"];
+                            $Category = $row["CategoryName"];
                         
                             ?>
                             <tr>
@@ -428,7 +433,7 @@ $projects = mysqli_query($conn, $qeury_projects);
                                     <?= $DescriptionProject ?>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-
+                                    <?=$Category?>
                                 </td>
                                 <td class="flex flex-row px-6 py-4 whitespace-nowrap">
                                     <div>
@@ -465,6 +470,20 @@ $projects = mysqli_query($conn, $qeury_projects);
         var confirmation = confirm(`Are you sure you want to delete this employee?`);
         return confirmation;
     }
+</script>
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+  });
 </script>
 
 </html>

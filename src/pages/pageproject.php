@@ -171,33 +171,34 @@ require '../../php/conn.php';
   <div class=" bg-slate-50  dark:bg-mainColorDark px-6 flex justify-center items-center">
     <div class="container w-[100%] max-h-full mx-auto bg-mainBlue rounded-lg p-14">
       <form>
-        <h1 class="text-center font-bold text-white text-4xl">Featured Projects</label>
-          <p class="mx-auto font-normal text-sm my-6 max-w-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptatibus quia quos vero vel iste tenetur dolor alias sit excepturi. Illo aliquam culpa facilis iusto
-            beatae placeat accusantium non eum minima.</p>
-          <div class="sm:flex items-center bg-white rounded-full overflow-hidden p-2 px-5 justify-center">
-            <input id="search" class="text-sm font-poppins font-medium text-gray-400 flex-grow border-0 outline-none "
-              type="text" placeholder="Search your project..." />
-            <div class="ms:flex items-center justify-center px-6 rounded-full space-x-4 mx-auto ">
-              <select id="Com"
-                class="text-sm text-gray-800 font-poppins font-semibold outline-none border-2 px-8 py-2 rounded-full">
-                <?php
-                $sql = "SELECT * FROM categories";
-                $result = mysqli_query($conn, $sql);
+        <h1 class="text-center font-bold text-white text-4xl">Featured Projects</h1>
+        <p class="mx-auto font-normal text-center text-white text-sm my-6 max-w-lg">Lorem ipsum dolor sit amet
+          consectetur adipisicing elit.
+          Voluptatibus quia quos vero vel iste tenetur dolor alias sit excepturi. Illo aliquam culpa facilis iusto
+          beatae placeat accusantium non eum minima.</p>
+        <div class="sm:flex items-center bg-white rounded-full overflow-hidden p-2 px-5 justify-center">
+          <input id="search" class="text-sm font-poppins font-medium text-gray-400 flex-grow border-0 outline-none "
+            type="text" placeholder="Search your project..." />
+          <div class="ms:flex items-center justify-center px-6 rounded-full space-x-4 mx-auto ">
+            <select id="Categories"
+              class="text-sm text-gray-800 font-poppins font-semibold outline-none border-2 px-8 py-2 rounded-full">
+              <?php
+              $sql = "SELECT * FROM categories";
+              $result = mysqli_query($conn, $sql);
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                  echo "<option value='$row[CategoryID]'> $row[CategoryName] </option>";
-                }
-                ?>
-              </select>
-              <button
-                class="bg-[#FE8D4D] text-white text-sm font-light rounded-full px-6 py-3 font-poppins">Search</button>
-            </div>
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value='$row[CategoryID]'> $row[CategoryName] </option>";
+              }
+              ?>
+            </select>
+            <button
+              class="bg-[#FE8D4D] text-white text-sm font-light rounded-full px-6 py-3 font-poppins">Search</button>
           </div>
+        </div>
       </form>
     </div>
   </div>
-  <section id="parent" class="flex justify-center items-center flex-row pt-12 w-full gap-8 flex-wrap">
+  <section id="parent" class="flex justify-center items-center pt-12 w-full gap-8 flex-wrap">
     <?php
 
     $sql = 'SELECT * FROM projects';
@@ -239,9 +240,12 @@ require '../../php/conn.php';
             <div class="flex justify-center items-center flex-row w-full gap-4">
               <div class="rounded-full aspect-square w-[50px] bg-[#FF5353] flex justify-center items-center"><img
                   src="../../images/SVG (3).svg" alt="heart-emoji"></div>
-              <button type="button"
-                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full">Apply
-                Now</button>
+              <form action="./Projects/afficheDetails.php" method="GET">
+                <button type="button"
+                  class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full"><a
+                    href="./Projects/projectDetails.php?ProjectID=<?php $ProjectID ?>">Apply Now</a>
+                </button>
+              </form>
             </div>
           </div>
 
@@ -360,6 +364,8 @@ require '../../php/conn.php';
     <script src="../../src/scripts/owl.js"></script>
 
   </footer>
+
+  <!-- Search Projects By Title -->
   <script>
     document.getElementById("search").addEventListener("input", function () {
       var search = document.getElementById("search").value;
@@ -397,7 +403,7 @@ require '../../php/conn.php';
               </div>
               <div class="flex justify-center items-center flex-row w-full gap-4">
                 <div class="rounded-full aspect-square w-[50px] bg-[#FF5353] flex justify-center items-center"><img src="../../images/SVG (3).svg" alt="heart-emoji"></div>
-                <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full">Apply Now</button>
+                <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full"><a href="./Projects/projectDetails.php">Apply Now</a></button>
               </div>
             </div>`;
 
@@ -408,10 +414,68 @@ require '../../php/conn.php';
           parent.innerHTML = "";
         }
       };
-
       x.send();
     });
   </script>
+
+  <!-- Filter Projects By Category  -->
+  <script>
+    document.getElementById("Categories").addEventListener("input", function () {
+      var search = document.getElementById("Categories").value;
+
+      var x = new XMLHttpRequest();
+      x.open("GET", "./ajax/filter.php?Categories=" + search, true);
+      x.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          var res = JSON.parse(this.response);
+          console.log(res);
+
+
+
+          var parent = document.getElementById("parent");
+          parent.innerHTML = "";
+
+          res.forEach(e => {
+            var div = document.createElement("div");
+            div.className = "flex flex-col gap-8 justify-center items-center rounded-[18px] drop-shadow-[0px_2px_28px_0px_#3E35780A] shadow-[0px_2px_28px_0px_#3E35780A] bg-white dark:bg-cardGrey p-8 w-[329px]";
+            div.innerHTML = `
+              <div class="flex justify-center items-center flex-col gap-4">
+                <img src="../../images/job-logo-1.png.svg" alt="first-job-logo"> 
+                <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl">${e.ProjectTitle}</h3>
+                <p class="text-mainBlue dark:text-mainPurple font-poppins font-normal text-base">${e.DescriptionProject}</p>
+              </div>
+              <div class="flex justify-center items-center flex-col gap-4 w-full">
+                <div class="flex justify-between items-center flex-row w-full">
+                  <img src="../../images/List → Item → SVG (4).svg" alt="money-bag">
+                  <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">$14,000 - $25,000</p>
+                  <p class="font-poppins text-[15px] font-medium text-center text-textGrey">/monthly</p>
+                </div>
+                <div class="flex justify-between items-center flex-row w-full">
+                  <img src="../../images/List → Item → SVG (5).svg" alt="money-bag">
+                  <p class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">London, England</p>
+                  <p class="font-poppins text-[15px] font-medium text-center text-textGrey underline">View Maps</p>
+                </div>
+              </div>
+              <div class="flex justify-center items-center flex-row w-full gap-4">
+                <div class="rounded-full aspect-square w-[50px] bg-[#FF5353] flex justify-center items-center"><img src="../../images/SVG (3).svg" alt="heart-emoji"></div>
+                <button type="button" class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full"><a href="./Projects/projectDetails.php">Apply Now</a></button>
+              </div>
+            </div>`;
+
+            parent.appendChild(div);
+          });
+        } else {
+          // var parent = document.getElementById("parent");
+          // parent.innerHTML = "";
+          console.error("no content")
+        }
+      };
+      x.send();
+    });
+  </script>
+
+
+
 
 </body>
 

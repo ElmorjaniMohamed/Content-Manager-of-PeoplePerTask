@@ -444,7 +444,7 @@ require 'src/pages/script.php';
       </div>
       <?php
 
-      $sql = 'SELECT * FROM projects';
+      $sql = 'SELECT * FROM projects limit 3';
 
       $query = mysqli_query($conn, $sql);
 
