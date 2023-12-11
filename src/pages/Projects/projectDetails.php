@@ -1,6 +1,6 @@
 <?php
-
 require '../../../php/conn.php';
+require '../script.php';
 
 ?>
 
@@ -22,7 +22,7 @@ require '../../../php/conn.php';
 </head>
 
 <body class="bg-slate-50">
-    <header class="dark:bg-mainColorDark bg-slate-50">
+    <header>
         <nav class="h-20 flex hf:dark:border-b-[1px] hf:border-b-seperator">
             <ul class="flex px-16 herothird:px-8 justify-between items-center w-full">
                 <li class="flex gap-1">
@@ -54,23 +54,111 @@ require '../../../php/conn.php';
                 <li>
                     <ul class="flex justify-center items-center gap-4">
                         <li>
-                            <form class="relative hs:flex hidden">
+                            <form class="relative hs:flex hidden" style="margin: auto;">
                                 <input type="text"
                                     class="shadow-[0px_4px_16px_0px_#00000014] placeholder:text-[#818181]
-                                  dark:shadow-none bg-slate-50 rounded-full py-2 pl-6 pr-12 w-[18rem] border-none outline-none"
+                                    dark:shadow-none bg-slate-50 rounded-full  py-2 pl-6 pr-12 w-[18rem] border-none outline-none"
                                     placeholder="Search Here...">
                                 <button type="submit" class="absolute z-10 top-[10px] right-5"><img
                                         src="../../../images/search-icon.svg" alt="search-icon"></button>
                             </form>
                         </li>
-                        <li class="hidden ht:flex justify-center items-center gap-3 flex-row">
-                            <button type="button"
-                                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
-                                In</button>
-                            <button type="button"
-                                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]"><a
-                                    href="signup2.php">Sign Up</a></button>
-                        </li>
+                        <?php
+                        if (isset($_SESSION['User'])) {
+
+                            echo '<li>
+              <div class="mx-auto flex justify-end">
+
+                <div class="relative inline-block" id="dropdown">
+
+                  <div class="flex items-center justify-center">
+                    <button onclick="toggleDropdown()"
+                      class="flex h-12 w-12 items-center justify-center rounded-full bg-mainBlue border-none text-slate-100 ring-slate-100 transition overflow-hidden">
+                      <img class="w-full object-cover" src="../../../images/circle-man.webp" alt="Profile">
+                    </button>
+                    <div class="flex gap-2 pl-2">
+                      <h2 class="font-semibold font-poppins text-lg text-mainBlue dark:text-mainPurple">'; ?>
+                            <?php echo $_SESSION["username"] ?>
+                            <?php echo '</h2>
+                      <img src="../../../images/Waving Hand Emoji.svg" alt="waving hand">
+                    </div>
+                  </div>
+                  <div id="dropdownMenu"
+                    class="hidden absolute right-0 mt-3 flex w-60 flex-col gap-3 z-50 rounded-xl bg-slate-900 p-4 text-slate-100 shadow-lg">
+                    <div class="flex gap-3 items-center">
+                      <div
+                        class="flex items-center justify-center rounded-full h-12 w-12 overflow-hidden border-2 border-mainBlue">
+                        <img class="w-full object-cover" src="../../../images/circle-man.webp" alt="Profile">
+                      </div>
+                      <div>
+                        <div class="flex gap-1 text-sm font-semibold">
+                          <span>Mickey Mouse</span>
+                          <span class="text-mainBlue">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                              stroke="currentColor" class="h-5 w-5">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z">
+                              </path>
+                            </svg>
+                          </span>
+                        </div>
+                        <div class="text-xs text-slate-400">mickey@mouse.com</div>
+                      </div>
+                    </div>
+                    <div class="border-t border-slate-500/30"></div>
+                    <div class="flex justify-around">
+                      <div class="flex flex-col items-center justify-center">
+                        <span class="text-3xl font-semibold">268</span>
+                        <span class="text-sm text-mainBlue">Projects</span>
+                      </div>
+                      <div class="flex flex-col items-center justify-center">
+                        <span class="text-3xl font-semibold">897</span>
+                        <span class="text-sm text-mainBlue">Offers</span>
+                      </div>
+                    </div>
+                    <div class="border-t border-slate-500/30"></div>
+                    <div class="flex flex-col">
+                      <a href="../../../src/pages/Freelancers/profile.php" class="flex items-center gap-3 rounded-md py-2 px-3 hover:bg-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                          <path fill-rule="evenodd"
+                            d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Profile</span>
+                      </a>
+                      <a href="#" class="flex items-center gap-3 rounded-md py-2 px-3 hover:bg-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                          <path fill-rule="evenodd"
+                            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 01-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 01-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 01-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                        <span>Help Center</span>
+                      </a>
+                    </div>
+                    <button
+                      class="flex justify-center gap-3 rounded-md bg-red-600 py-2 px-3 font-semibold hover:bg-red-500 focus:ring-2 focus:ring-red-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6">
+                        <path fill-rule="evenodd"
+                          d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm10.72 4.72a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 11-1.06-1.06l1.72-1.72H9a.75.75 0 010-1.5h10.94l-1.72-1.72a.75.75 0 010-1.06z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                      <a href="../../../src/pages/logout.php">Logout</a>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>';
+                        } else {
+                            echo '<li class="hidden ht:flex justify-center items-center gap-3 flex-row">
+              <button type="button"
+                class="flex text-defaultText rounded-full bg-loginBtnBg py-2 px-8 justify-center items-center font-poppins text-base font-medium w-[full]">Log
+                In</button>
+              <button type="button"
+                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-[full]"><a
+                  href="../../../src/pages/signup2.php">Sign Up</a></button>
+            </li>';
+                        }
+                        ?>
                         <li>
                             <div class="flex ht:hidden burgerMenu">
                                 <img src="../../../images/burger-menu-light.svg" alt="burger-menu-light"
@@ -110,7 +198,6 @@ require '../../../php/conn.php';
                                         fill-rule="evenodd" clip-rule="evenodd"></path>
                                 </svg>
                             </button>
-                            </div>
                         </li>
                     </ul>
                 </li>
@@ -122,12 +209,13 @@ require '../../../php/conn.php';
                 id="navBurgerNav">
                 <li>
                     <ul class="justify-center items-center gap-4 hf:hidden flex flex-col hs:pb-6">
-                        <li><a href="#"
+                        <li><a href="../../../index.php"
                                 class="dark:text-mainPurple text-mainBlue font-poppins font-normal text-base border-b-mainBlue dark:border-b-mainPurple border-b-[3px] py-[0.6rem]">Home</a>
                         </li>
                         <li><a href="#"
                                 class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4">Become
-                                a member</a></li>
+                                a
+                                member</a></li>
                         <li><a href="#"
                                 class="dark:text-slate-50 text-defaultText font-poppins font-normal text-base py-4">About
                                 Us</a></li>
@@ -144,7 +232,7 @@ require '../../../php/conn.php';
                                     class="shadow-[0px_4px_16px_0px_#00000014] placeholder:text-[#818181] dark:shadow-none bg-slate-50 rounded-full py-2 pl-6 pr-12 w-[18rem] border-none outline-none"
                                     placeholder="Search Here...">
                                 <button type="submit" class="absolute z-10 top-[10px] right-5"><img
-                                        src="../../../images/search-icon.svg" alt="search-icon"></button>
+                                        src="./images/search-icon.svg" alt="search-icon"></button>
                             </form>
                         </li>
                         <li class="flex ht:hidden justify-center items-center gap-3 flex-col">
@@ -169,14 +257,37 @@ require '../../../php/conn.php';
                                         fill-rule="evenodd" clip-rule="evenodd"></path>
                                 </svg>
                             </button>
-                            </div>
                         </li>
                     </ul>
                 </li>
             </ul>
         </nav>
     </header>
-	<section class="overflow-hidden bg-slate-50 py-11 font-poppins dark:bg-gray-800">
+
+    <?php
+    $ProjectTitle = "";
+    $ProjectDescription = "";
+    if (isset($_GET["ProjectID"])) {
+
+        $projectID = $_GET["ProjectID"];
+        $sql = "SELECT username, ProjectTitle, DescriptionProject FROM projects INNER JOIN users ON projects.userid = users.userid WHERE ProjectID = '$projectID'";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    $ProjectTitle = $row["ProjectTitle"];
+                    $ProjectDescription = $row["DescriptionProject"];
+                    $username = $row["username"];
+
+                }
+            }
+        }
+    }
+    ?>
+
+    <section class="overflow-hidden bg-slate-50 py-11 font-poppins dark:bg-gray-800">
         <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
             <div class="flex flex-wrap -mx-4">
                 <div class="w-full mb-8 md:w-1/2 md:mb-0">
@@ -187,55 +298,63 @@ require '../../../php/conn.php';
                         </div>
                         <div class="px-6 pb-6 mt-6 border-t border-gray-300 dark:border-gray-400 ">
                             <div class="flex gap-3 items-center pt-3">
-                                <div
-                                  class="flex items-center justify-center rounded-full h-12 w-12 overflow-hidden">
-                                  <img class="w-full object-cover" src="../../../images/circle-man.webp" alt="Profile">
+                                <div class="flex items-center justify-center rounded-full h-12 w-12 overflow-hidden">
+                                    <img class="w-full object-cover" src="../../../images/circle-man.webp"
+                                        alt="Profile">
                                 </div>
                                 <div>
-                                  <div class="flex gap-1 text-sm font-semibold">
-                                    <span>
-                                      Mohamed El Morjani
-                                    </span>
-                                    <span class="text-mainBlue">
-                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" class="h-5 w-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z">
-                                        </path>
-                                      </svg>
-                                    </span>
-                                  </div>
-                                  <div class="text-xs text-slate-400">support@ppt.ma</div>
+                                    <div class="flex gap-1 text-sm font-semibold">
+                                        <span>
+                                            <?php echo $username ?>
+                                        </span>
+                                        <span class="text-mainBlue">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z">
+                                                </path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="text-xs text-slate-400">support@ppt.ma</div>
                                 </div>
-                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="w-full px-4 md:w-1/2 ">
-                    <div class="lg:pl-20">
+                    <form class="lg:pl-20" action="../offers/offer.php" method="POST">
                         <div class="mb-8 ">
-                            <h2 class="max-w-xl mb-6 text-2xl text-mainBlue font-bold dark:text-gray-400 md:text-4xl">Create Web Application Ecommerce</h2>
+                            <h2 class="max-w-xl mb-6 text-2xl text-mainBlue font-bold dark:text-gray-400 md:text-4xl">
+                                <?php echo !empty($ProjectTitle) ? $ProjectTitle : "No Title"; ?>
+                            </h2>
                             <p class="max-w-md text-gray-700 dark:text-gray-400">
-                                Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
-                                Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet Lorem ispum dor amet
+                                <?php echo !empty($ProjectDescription) ? $ProjectDescription : "No Description"; ?>
                             </p>
+
                         </div>
+
                         <div class="mb-8">
-                            <h2 class="w-24 pb-1 mb-4 text-2xl font-bold border-b border-mainBlue dark:text-gray-400 dark:border-gray-600">
+                            <h2
+                                class="w-full pb-1 mb-4 text-2xl font-bold border-b border-mainBlue dark:text-gray-400 dark:border-gray-600">
                                 Add Offer
                             </h2>
                         </div>
                         <div class="mb-8 ">
-                            <label for="Deadline" class="text-gray-800 text-sm font-bold">Deadline<span class="text-red-600">*</span></label>
-                                <input id="Deadline" name="Deadline"
-                                    class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                    placeholder="" />
-                            <label for="price" class="text-gray-800 text-sm font-bold">Price<span class="text-red-600">*</span></label>
+                            <input type="hidden"  name="id_project" value="<?= $_GET['ProjectID'] ?>">
+                            <label for="Deadline" class="text-gray-800 text-sm font-bold">Deadline<span
+                                    class="text-red-600">*</span></label>
+                            <input type="date" id="Deadline" name="Deadline"
+                                class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
+                                placeholder="" />
+                            <label for="price" class="text-gray-800 text-sm font-bold">Price<span
+                                    class="text-red-600">*</span></label>
                             <input id="Price" name="Price"
                                 class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
                                 placeholder="" />
                             <label for="Description" class="text-gray-800 text-sm font-bold">Description</label>
-                            <textarea name="Description" id="Description" cols="30" rows="10" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-16 flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
+                            <textarea name="Description" id="Description" cols="30" rows="10"
+                                class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-16 flex items-center pl-3 text-sm border-gray-300 rounded border"></textarea>
                         </div>
                         <div>
                             <button
@@ -243,7 +362,7 @@ require '../../../php/conn.php';
                                 Submit
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -356,6 +475,22 @@ require '../../../php/conn.php';
             </p>
         </div>
     </footer>
+
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('hidden');
+        }
+
+        // Close the dropdown when clicking outside of the button or the menu
+        window.onclick = function (event) {
+            const dropdown = document.getElementById('dropdown');
+            if (event.target !== dropdown && !dropdown.contains(event.target)) {
+                const dropdownMenu = document.getElementById('dropdownMenu');
+                dropdownMenu.classList.add('hidden');
+            }
+        };
+    </script>
     < </body>
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 // connexion
 require("../../../php/conn.php");
-
+session_start();
 // Effectuer une requête SELECT pour récupérer les userid existants
 $query = "SELECT userid FROM users";
 $result = mysqli_query($conn, $query);
@@ -23,7 +23,7 @@ if ($result) {
     // Assurez-vous qu'une ligne a été récupérée
     if ($row) {
         
-        $UserID = $row['userid'];
+        $UserID = $_SESSION['id'];
        
     
         // Utilisez la variable $UserID dans votre requête d'insertion
@@ -33,7 +33,7 @@ if ($result) {
         $insertResult = mysqli_query($conn, $sql);
 
         if ($insertResult) {
-            header("Location: projects.php?msg=New record created successfully");
+            header("Location: ../profileuser.php?msg=New record created successfully");
         } else {
             echo "Failed: " . mysqli_error($conn);
         }

@@ -117,6 +117,7 @@ function login()
 
     $email = $_POST["email"];
     $password = $_POST["password"];
+    $role = isset($_POST['role']) ? test_input($_POST['role']) : '';
 
     if (empty($email) || empty($password)) {
         echo 'All fields are required.';
@@ -146,7 +147,7 @@ function login()
 
     if ($row = mysqli_fetch_assoc($result)) {
         $password_fetched = $row['Password'];
-        $role = $row['role'];
+        $id=$row['userid'];
         // Check the password
         if (password_verify($password, $password_fetched)) {
 
@@ -158,12 +159,16 @@ function login()
             // Redirect to index.php
             if($role=='Admin'){
                  $_SESSION['role']='admin';
+                 $_SESSION['id']=$id;
+
                  header("Location:./dashboard.php");
             }else if($role=='Freelancer') {
+                $_SESSION['id']=$id;
             $_SESSION['User'] = 'Freelancer';
             header("Location: ../../index.php");}
             else{ 
             $_SESSION['User'] = 'Client';
+            $_SESSION['id']=$id;
 
             header("Location: ../../index.php");
             }

@@ -209,6 +209,7 @@ require '../../php/conn.php';
       while ($row = mysqli_fetch_assoc($query)):
         $ProjectTitle = $row['ProjectTitle'];
         $DescriptionProject = $row['DescriptionProject'];
+        $ProjectID = $row['ProjectID'];
 
         ?>
         <div class="flex justify-center items-center gap-6 flex-wrap">
@@ -240,12 +241,12 @@ require '../../php/conn.php';
             <div class="flex justify-center items-center flex-row w-full gap-4">
               <div class="rounded-full aspect-square w-[50px] bg-[#FF5353] flex justify-center items-center"><img
                   src="../../images/SVG (3).svg" alt="heart-emoji"></div>
-              <form action="./Projects/afficheDetails.php" method="GET">
+          
                 <button type="button"
                   class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full"><a
-                    href="./Projects/projectDetails.php?ProjectID=<?php $ProjectID ?>">Apply Now</a>
+                    href="./Projects/projectDetails.php?ProjectID=<?php echo $ProjectID; ?>">Apply Now</a>
                 </button>
-              </form>
+           
             </div>
           </div>
 
