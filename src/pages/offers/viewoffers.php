@@ -1,10 +1,10 @@
 <?php
 
-require(__DIR__ . "../../../php/conn.php");
-
+require("../../../php/conn.php");
 session_start();
+
 // if (isset($_SESSION['User']) == 'Client') {
-//     header('Location: ./Freelancers/profile.php ');
+//     header('location: ../profileuser.php');
 // }
 
 
@@ -18,10 +18,10 @@ session_start();
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
     <link rel="stylesheet"
         href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../../dist/output.css">
+    <link rel="stylesheet" href="../../../dist/output.css">
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="./src/css/owl.carousel.min.css">
-    <script src="../../dist/sandbox.js"></script>
+    <script src="../../../dist/sandbox.js"></script>
 
     <title>PeoplePerTask</title>
 </head>
@@ -31,11 +31,11 @@ session_start();
         <nav class="h-20 flex hf:dark:border-b-[1px] hf:border-b-seperator">
             <ul class="flex px-16 herothird:px-8 justify-between items-center w-full">
                 <li class="flex gap-1">
-                    <img src="../../images/main-logo.svg" alt="main-logo">
+                    <img src="../../../images/main-logo.svg" alt="main-logo">
                     <div class="hf:hidden hl:hidden flex burgerMenu">
-                        <img src="../../images/burger-menu-light.svg" alt="burger-menu-light" id="burger-menu-light"
+                        <img src="../../../images/burger-menu-light.svg" alt="burger-menu-light" id="burger-menu-light"
                             class="cursor-pointer">
-                        <img src="../../images/burger-menu-dark.svg" alt="burger-menu-dark" id="burger-menu-dark"
+                        <img src="../../../images/burger-menu-dark.svg" alt="burger-menu-dark" id="burger-menu-dark"
                             class="cursor-pointer">
                     </div>
                 </li>
@@ -64,7 +64,7 @@ session_start();
                       dark:shadow-none bg-slate-50 rounded-full  py-2 pl-6 pr-12 w-[18rem] border-none outline-none"
                                     placeholder="Search Here...">
                                 <button type="submit" class="absolute z-10 top-[10px] right-5"><img
-                                        src="../../images/search-icon.svg" alt="search-icon"></button>
+                                        src="../../../images/search-icon.svg" alt="search-icon"></button>
                             </form>
                         </li>
                         <li>
@@ -75,7 +75,7 @@ session_start();
                                     <div class="flex items-center justify-center">
                                         <button onclick="toggleDropdown()"
                                             class="flex h-12 w-12 items-center justify-center rounded-full bg-mainBlue border-none text-slate-100 ring-slate-100 transition overflow-hidden">
-                                            <img class="w-full object-cover" src="../../images/circle-man.webp"
+                                            <img class="w-full object-cover" src="../../../images/circle-man.webp"
                                                 alt="Profile">
                                         </button>
                                         <div class="flex gap-2 pl-2">
@@ -83,7 +83,7 @@ session_start();
                                                 class="font-semibold font-poppins text-lg text-mainBlue dark:text-mainPurple">
                                                 <?php echo $_SESSION["username"] ?>
                                             </h2>
-                                            <img src="../../images/Waving Hand Emoji.svg" alt="waving hand">
+                                            <img src="../../../images/Waving Hand Emoji.svg" alt="waving hand">
                                         </div>
                                     </div>
 
@@ -94,7 +94,7 @@ session_start();
                                         <div class="flex gap-3 items-center">
                                             <div
                                                 class="flex items-center justify-center rounded-full h-12 w-12 overflow-hidden border-2 border-mainBlue">
-                                                <img class="w-full object-cover" src="../../images/circle-man.webp"
+                                                <img class="w-full object-cover" src="../../../images/circle-man.webp"
                                                     alt="Profile">
                                             </div>
                                             <div>
@@ -128,7 +128,7 @@ session_start();
                                         </div>
                                         <div class="border-t border-slate-500/30"></div>
                                         <div class="flex flex-col">
-                                            <a href="../../index.php"
+                                            <a href="../../../index.php"
                                                 class="flex items-center gap-3 rounded-md py-2 px-3 hover:bg-slate-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     enable-background="new 0 0 24 24" viewBox="0 0 24 24"
@@ -150,7 +150,7 @@ session_start();
                                                 <span>Help Center</span>
                                             </a>
                                         </div>
-                                        <button
+                                        <button @click="isOpen=false"
                                             class="flex justify-center gap-3 rounded-md bg-red-600 py-2 px-3 font-semibold hover:bg-red-500 focus:ring-2 focus:ring-red-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                 fill="currentColor" class="h-6 w-6">
@@ -158,7 +158,7 @@ session_start();
                                                     d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm10.72 4.72a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 11-1.06-1.06l1.72-1.72H9a.75.75 0 010-1.5h10.94l-1.72-1.72a.75.75 0 010-1.06z"
                                                     clip-rule="evenodd"></path>
                                             </svg>
-                                            <a href="./logout.php">Logout</a>
+                                            <a href="../logout.php">Logout</a>
                                         </button>
                                     </div>
                                 </div>
@@ -166,9 +166,9 @@ session_start();
                         </li>
                         <li>
                             <div class="flex ht:hidden burgerMenu">
-                                <img src="../../images/burger-menu-light.svg" alt="burger-menu-light"
+                                <img src="../../../images/burger-menu-light.svg" alt="burger-menu-light"
                                     id="burger-menu-light" class="cursor-pointer">
-                                <img src="../../images/burger-menu-dark.svg" alt="burger-menu-dark"
+                                <img src="../../../images/burger-menu-dark.svg" alt="burger-menu-dark"
                                     id="burger-menu-dark" class="cursor-pointer">
                             </div>
                         </li>
@@ -268,262 +268,85 @@ session_start();
             </ul>
         </nav>
     </header>
-    <main class="profile-page">
-        <section class="relative block h-500-px">
-            <div class="absolute top-0 w-full h-full bg-center bg-cover bg-body-bg">
-                <span id="blackOverlay" class="w-full h-full absolute opacity-50"></span>
-            </div>
-            <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px"
-                style="transform: translateZ(0px)">
-                <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-                    <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
-                </svg>
-            </div>
-        </section>
-        <section class="relative py-16 bg-blueGray-200">
-            <div class="container mx-auto px-4">
-                <div
-                    class="relative flex flex-col min-w-0 break-words bg-slate-50 w-full mb-6 shadow-xl rounded-lg -mt-64">
-                    <div class="px-6">
-                        <div class="flex flex-wrap justify-center">
-                            <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                                <div class="relative">
-                                    <img alt="..." src="../../images/circle-man.webp"
-                                        class="shadow-xl rounded-full h-auto align-middle border-slate-50 border-4 absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
+
+    <section>
+        <div class=" text-white dark:text-white dark:bg-indigo-950 p-4  m-[2%] rounded-2xl border dark:border-none">
+            <h1 class="text-center p-6 text-yellow-500 font-bold text-3xl">Offers</h1>
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                            Freelancer</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                            Deadline</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                            Price</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                            Description</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-yellow-500 uppercase tracking-wider">
+                            ACTION</th>
+                    </tr>
+                </thead>
+                <tbody class=" divide-y divide-slate-500">
+                    <?php
+
+                    if (isset($_SESSION["User"]) && $_SESSION["User"] == 'Client') {
+                        $id = $_SESSION["userid"];
+                    } else {
+                        echo "Error: User is not a Freelancer.";
+                    }
+                    $sql = "SELECT `Description`, `Amount`, `Deadline`, users.username FROM `offers` inner JOIN users on users.userid = offers.FreelancerID WHERE users.userid = $id";
+
+                    $result = mysqli_query($conn, $sql);
+
+
+                    while ($row = mysqli_fetch_assoc($result)):
+
+                        $Description = $row["Description"];
+                        $Amount = $row["Amount"];
+                        $Deadline = $row["Deadline"];
+                        $freelancer = $row["username"];
+
+                        ?>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <?= $username ?>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <?= $Deadline ?>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <?= $Amount ?>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <?= $Description ?>
+                            </td>
+                            <td class="flex flex-row px-6 py-4 whitespace-nowrap">
+                                <div>
+                                    <form method="get">
+                                        <button type="button" id="open-modal"
+                                            class="ml-2 px-4 py-2 font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:shadow-outline-red active:bg-green-600 transition duration-150 ease-in-out">
+                                            <a href="../?id=<?= $ProjectID ?>">Accept</a>
+                                        </button>
+
+                                    </form>
                                 </div>
-                            </div>
-                            <div class="w-8 lg:w-4/12 px-8 lg:order-3 lg:text-right lg:self-center">
-                                <div class="py-6 px-5 mt-32 sm:mt-0">
-                                    <button type="button"
-                                        class="modal-open text-white bg-mainBlue hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-300 me-2 mb-2 transition duration-150 ease-in-out">
-                                        <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24" id="plus-circle">
-                                            <path fill="#F8FAFC"
-                                                d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z">
-                                            </path>
-                                        </svg>
-                                        <a href="">Add Project</a>
-                                    </button>
-                                    <button type="button"
-                                        class="text-white bg-yellow-500 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-yellow-200 me-2 mb-2">
-                                        <svg class="w-5 h-5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                            data-name="Layer 1" viewBox="0 0 24 24" id="dashboard">
-                                            <path fill="#F8FAFC"
-                                                d="M19.088,4.95453c-.00732-.00781-.00952-.01819-.01715-.02582s-.01819-.00995-.02606-.01733a9.97886,9.97886,0,0,0-14.08948,0c-.00787.00738-.01837.00964-.02606.01733s-.00983.018-.01715.02582a10,10,0,1,0,14.1759,0ZM12,20a7.9847,7.9847,0,0,1-6.235-3H9.78027a2.9636,2.9636,0,0,0,4.43946,0h4.01532A7.9847,7.9847,0,0,1,12,20Zm-1-5a1,1,0,1,1,1,1A1.001,1.001,0,0,1,11,15Zm8.41022.00208L19.3999,15H15a2.99507,2.99507,0,0,0-2-2.81573V9a1,1,0,0,0-2,0v3.18427A2.99507,2.99507,0,0,0,9,15H4.6001l-.01032.00208A7.93083,7.93083,0,0,1,4.06946,13H5a1,1,0,0,0,0-2H4.06946A7.95128,7.95128,0,0,1,5.68854,7.10211l.65472.65473A.99989.99989,0,1,0,7.75732,6.34277l-.65466-.65466A7.95231,7.95231,0,0,1,11,4.06946V5a1,1,0,0,0,2,0V4.06946a7.95231,7.95231,0,0,1,3.89734,1.61865l-.65466.65466a.99989.99989,0,1,0,1.41406,1.41407l.65472-.65473A7.95128,7.95128,0,0,1,19.93054,11H19a1,1,0,0,0,0,2h.93054A7.93083,7.93083,0,0,1,19.41022,15.00208Z">
-                                            </path>
-                                        </svg>
-                                        <a href="">Dashboard</a>
-                                    </button>
-                                </div>
-                            </div>
+                                <form method="GET">
+                                    <button type="button" onclick="return confirmDelete()"
+                                        class="ml-2 px-4 py-2 font-medium text-white bg-red-400 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
+                                        <a href="?id=<?= $ProjectID ?>">Reject</a></button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
 
-                            <div class="w-full lg:w-4/12 px-4 lg:order-1">
-                                <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                                    <div class="mr-4 p-3 text-center">
-                                        <span
-                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span><span
-                                            class="text-lg font-semibold text-yellow-500">Projects</span>
-                                    </div>
-                                    <div class="mr-4 p-3 text-center">
-                                        <span
-                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">10</span><span
-                                            class="text-lg font-semibold text-yellow-500">Offers</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-12">
-                            <h3 class="text-4xl font-semibold leading-normal text-blueGray-700 mb-2">
-                                <?php echo $_SESSION["username"] ?>
-                            </h3>
-                            <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                                <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-                                Los Angeles, California
-                            </div>
-                        </div>
-                    </div>
-                    <section class="flex justify-center items-center flex-col pt-12 w-full gap-8">
-                        <div class="flex justify-center items-center gap-3 flex-col">
-                            <h2
-                                class="text-mainBlue border-b border-mainBlue pb-1 dark:text-slate-50 font-poppins font-semibold text-[32px]">
-                                Your Projects</h2>
-                        </div>
-                        <?php
+                    <?php
+                    endwhile;
+                    ?>
+            </table>
+        </div>
+    </section>
 
-                        $id = $_SESSION["id"];
-
-                        $sql = "SELECT * FROM projects WHERE userid = '$id' ";
-
-                        $query = mysqli_query($conn, $sql);
-
-                        if (mysqli_num_rows($query) > 0):
-                            while ($row = mysqli_fetch_assoc($query)):
-                                $ProjectTitle = $row['ProjectTitle'];
-                                $DescriptionProject = $row['DescriptionProject'];
-                                $ProjectID  = $row['ProjectID'];
-
-                                ?>
-                                <div class="flex justify-center items-center p-3 gap-6 flex-wrap">
-                                    <div
-                                        class="flex flex-col gap-8 justify-center items-center rounded-[18px] drop-shadow-[0px_2px_28px_0px_#3E35780A] shadow-[0px_2px_28px_0px_#3E35780A] bg-white dark:bg-cardGrey p-8 w-[329px]">
-                                        <div class="flex justify-center items-center flex-col gap-4">
-                                            <img src="../../images/job-logo-1.png.svg" alt="first-job-logo">
-                                            <h3 class="dark:text-slate-50 text-defaultText font-poppins font-semibold text-xl">
-                                                <?= $ProjectTitle ?>
-                                            </h3>
-                                            <p class="text-mainBlue dark:text-mainPurple font-poppins font-normal text-base">
-                                                <?= $DescriptionProject ?>
-                                            </p>
-                                        </div>
-                                        <div class="flex justify-center items-center flex-col gap-4 w-full">
-                                            <div class="flex justify-between items-center flex-row w-full">
-                                                <img src="../../images/List → Item → SVG (4).svg" alt="money-bag">
-                                                <p
-                                                    class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">
-                                                    $14,000 -
-                                                    $25,000</p>
-                                                <p class="font-poppins text-[15px] font-medium text-center text-textGrey">
-                                                    /monthly</p>
-                                            </div>
-                                            <div class="flex justify-between items-center flex-row w-full">
-                                                <img src="../../images/List → Item → SVG (5).svg" alt="money-bag">
-                                                <p
-                                                    class="font-poppins text-[15px] font-medium text-center text-defaultText dark:text-slate-50">
-                                                    London,
-                                                    England</p>
-                                                <p
-                                                    class="font-poppins text-[15px] font-medium text-center text-textGrey underline">
-                                                    View Maps</p>
-                                            </div>
-                                            <div id="tagsContainer">
-                                                <?php 
-
-                                                $res_tags=mysqli_query($conn,"SELECT tags.Name as name FROM tags INNER JOIN projects INNER JOIN project_tag ON projects.ProjectID = project_tag.project_id and project_tag.tag_id=tags.id where projects.ProjectID=$ProjectID");
-                                                
-                                                while ($row_tags = mysqli_fetch_assoc($res_tags)){
-                                                
-                                                ?>
-                                                <span
-                                                    class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 uppercase last:mr-0 mr-1">
-                                                    <?php echo $row_tags['name'];   ?>
-                                                </span>
-                                           <?php } ?>
-                                            </div>
-                                            <form action="./tags/craete.php" method="POST">
-                                                <div class="flex justify-center items-center ">
-                                                     <input name="id_project" type="hidden" value="<?= $ProjectID ?>" >
-                                                    <select name="id_tag" id="" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded-full border">
-                                                        <?php $tags = mysqli_query($conn, "SELECT * FROM tags");
-                                                        while ($row_tag = mysqli_fetch_assoc($tags)):
-                                                            $_tag = $row_tag["Name"];
-                                                            $_id_tag = $row_tag["id"];
-                                                            ?> 
-
-                                                            <option value="<?= $_id_tag ?>"> <?= $_tag ?> </option>
-
-                                                        <?php endwhile; ?>
-                                                    </select>
-                                                    <button type="submit"
-                                                        class="ml-3 px-4 mb-5 mt-2 border-mainBlue border-2 p-2 rounded-full text-mainBlue hover:bg-mainBlue hover:text-white">Add</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="flex justify-center items-center flex-row w-full gap-4">
-                                            <button type="button"
-                                                class="text-slate-50 rounded-full bg-mainBlue py-2 px-8 flex justify-center items-center dark:bg-mainPurple font-poppins text-base font-medium w-full"><a
-                                                    href="?ProjectID=<?php echo $ProjectID; ?>">View Offers</a>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                <?php endwhile; endif; ?>
-                    </section>
-                </div>
-            </div>
-        </section>
-        <section>
-            <form action="./Projects/create.php" method="POST">
-                <div>
-                    <div>
-                        <div class="flex justify-center pt-4">
-                            <!--Modal-->
-                            <div
-                                class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
-                                <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50">
-                                </div>
-
-                                <div
-                                    class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-
-                                    <div
-                                        class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-                                        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg"
-                                            width="18" height="18" viewBox="0 0 18 18">
-                                            <path
-                                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                                            </path>
-                                        </svg>
-                                    </div>
-
-                                    <!-- Add margin if you want to see some of the overlay behind the modal-->
-                                    <div class="modal-content py-4 text-left px-6">
-                                        <!--Title-->
-                                        <div class="flex justify-between items-center pb-3">
-                                            <p class="text-2xl text-center text-mainBlue font-bold">Add Your
-                                                Information
-                                            </p>
-                                            <div class="modal-close cursor-pointer z-50">
-                                                <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg"
-                                                    width="18" height="18" viewBox="0 0 18 18">
-                                                    <path
-                                                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                        </div>
-
-                                        <!--Body-->
-                                        <input type="hidden" name="ProjectID">
-                                        <label for="ProjectTitle" class="text-gray-800 text-sm font-bold">Name</label>
-                                        <input id="ProjectTitle" name="ProjectTitle"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border"
-                                            placeholder="Ex: Name Project" />
-                                        <label for="DescriptionProject"
-                                            class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Tilte</label>
-                                        <textarea cols="30" rows="10" id="DescriptionProject" name="DescriptionProject"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-16 pl-3 text-sm border-gray-300 rounded border">
-                                        </textarea>
-                                        <label for="Category"
-                                            class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Category</label>
-                                        <select id="CategoryID" name="CategoryID"
-                                            class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border">
-                                            <?php
-                                            $sql = "SELECT * FROM categories";
-                                            $result = mysqli_query($conn, $sql);
-
-                                            while ($row = mysqli_fetch_assoc($result)) {
-                                                echo "<option value='$row[CategoryID]'> $row[CategoryName] </option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <!--Footer-->
-                                        <div class="flex justify-end pt-2">
-                                            <button name="submit" type="submit"
-                                                class="px-4 bg-transparent p-2 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Submit</button>
-                                            <button
-                                                class="modal-close px-4 bg-mainBlue p-2 rounded-lg text-white hover:bg-indigo-400">Close</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </section>
-    </main>
     <footer class="bg-footer pt-12 mt-16 flex justify-center items-center flex-col gap-8">
         <div class="flex w-[100%] justify-center items-center ffff:px-16 px-8 ff:flex-row flex-col gap-4">
             <div class="flex justify-center items-center">
@@ -545,7 +368,7 @@ session_start();
             class="flex justify-between ffff:items-start items-center gap-2 font-poppins text-normal text-slate-50 w-[100%] ffff:px-16 px-8 ffff:flex-row flex-col">
             <div class="flex justify-center items-center gap-4 flex-col ffff:w-[40%] fff:w-[70%] w-[100%]">
                 <div class="flex justify-start items-start flex-col">
-                    <img src="../../images/div.footer-brand.svg" alt="brandlogo">
+                    <img src="../../../images/div.footer-brand.svg" alt="brandlogo">
                     <p>
                         PeoplePerTask is a Freelance Landing Website lorem ipsum
                         dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -554,11 +377,11 @@ session_start();
                     </p>
                 </div>
                 <div class="flex justify-center items-center gap-2">
-                    <img src="../../images/Item → Link (1).svg" alt="facebook">
-                    <img src="../../images/Item → Link (2).svg" alt="twitter">
-                    <img src="../../images/Item → Link (3).svg" alt="youtube">
-                    <img src="../../images/Item → Link (4).svg" alt="linkedin">
-                    <img src="../../images/Item → Link (5).svg" alt="instagram">
+                    <img src="../../../images/Item → Link (1).svg" alt="facebook">
+                    <img src="../../../images/Item → Link (2).svg" alt="twitter">
+                    <img src="../../../images/Item → Link (3).svg" alt="youtube">
+                    <img src="../../../images/Item → Link (4).svg" alt="linkedin">
+                    <img src="../../../images/Item → Link (5).svg" alt="instagram">
                 </div>
             </div>
             <div class="flex justify-center items-start gap-16 ff:flex-row flex-col">
@@ -600,19 +423,19 @@ session_start();
                     <h6 class="font-poppins font-semibold text-[18px]">Get In Touch With Us</h6>
                     <ul class="flex justify-start items-start flex-col gap-2">
                         <li class="flex justify-start items-start gap-2 font-poppins font-normal text-[14px]">
-                            <img src="../../images/List → Item → SVG (1).svg" alt="address">
+                            <img src="../../../images/List → Item → SVG (1).svg" alt="address">
                             <p>
                                 832 Thompson Drive, United States
                             </p>
                         </li>
                         <li class="flex justify-start items-start gap-2">
-                            <img src="../../images/List → Item → SVG (2).svg" alt="number">
+                            <img src="../../../images/List → Item → SVG (2).svg" alt="number">
                             <p>
                                 +123 345123 556
                             </p>
                         </li>
                         <li class="flex justify-start items-start gap-2">
-                            <img src="../../images/List → Item → SVG (3).svg" alt="email">
+                            <img src="../../../images/List → Item → SVG (3).svg" alt="email">
                             <p>
                                 support@peoplePerTask.id
                             </p>
@@ -630,20 +453,10 @@ session_start();
                 All Rights Reserved
             </p>
         </div>
-        <script src="../../src/scripts/jquery.min.js"></script>
-        <script src="../../src/scripts/owl.carousel.min.js"></script>
-        <script src="../../src/scripts/owl.js"></script>
+        <script src="../../../src/scripts/jquery.min.js"></script>
+        <script src="../../../src/scripts/owl.carousel.min.js"></script>
+        <script src="../../../src/scripts/owl.js"></script>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2"></script>
-    <script src=".././scripts/modal.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"
-        integrity="sha512-wTIaZJCW/mkalkyQnuSiBodnM5SRT8tXJ3LkIUA/3vBJ01vWe5Ene7Fynicupjt4xqxZKXA97VgNBHvIf5WTvg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css"
-        integrity="sha512-uKwYJOyykD83YchxJbUxxbn8UcKAQBu+1hcLDRKZ9VtWfpMb1iYfJ74/UIjXQXWASwSzulZEC1SFGj+cslZh7Q=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script>
         function toggleDropdown() {

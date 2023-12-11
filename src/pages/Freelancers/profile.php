@@ -1,9 +1,14 @@
 <?php
+
+require ("../../../php/conn.php");
 session_start();
 
 if (isset($_SESSION['User']) == 'Client') {
-  header('location: ../404.php');
+  header('location: ../profileuser.php');
+}else {
+  header('location: ../Freelancers/profile.php');
 }
+
 
 
 ?>
@@ -144,7 +149,7 @@ if (isset($_SESSION['User']) == 'Client') {
                           d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm10.72 4.72a.75.75 0 011.06 0l3 3a.75.75 0 010 1.06l-3 3a.75.75 0 11-1.06-1.06l1.72-1.72H9a.75.75 0 010-1.5h10.94l-1.72-1.72a.75.75 0 010-1.06z"
                           clip-rule="evenodd"></path>
                       </svg>
-                      <span>Logout</span>
+                      <a href="../logout.php">Logout</a>
                     </button>
                   </div>
                 </div>
@@ -360,7 +365,6 @@ if (isset($_SESSION['User']) == 'Client') {
         </div>
       </div>
     </section>
-
   </main>
   <footer class="bg-footer pt-12 mt-16 flex justify-center items-center flex-col gap-8">
     <div class="flex w-[100%] justify-center items-center ffff:px-16 px-8 ff:flex-row flex-col gap-4">
